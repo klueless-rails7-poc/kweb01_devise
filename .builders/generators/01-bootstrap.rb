@@ -37,17 +37,17 @@ KManager.action :bootstrap do
 
         cd(:app)
 
-        run_template_script('bin/runonce/git-setup.sh', dom: dom)
+        # run_template_script('bin/runonce/git-setup.sh', dom: dom)
 
-        add('.githooks/commit-msg').run_command('chmod +x .githooks/commit-msg')
-        add('.githooks/pre-commit').run_command('chmod +x .githooks/pre-commit')
+        # add('.githooks/commit-msg').run_command('chmod +x .githooks/commit-msg')
+        # add('.githooks/pre-commit').run_command('chmod +x .githooks/pre-commit')
 
-        oadd('.gitignore')
+        # add('.gitignore', template_file: '.gitignore-rails')
 
         # run_command('git config core.hooksPath .githooks') # enable sharable githooks (developer needs to turn this on before editing rep)
 
-        # run_command("git add .; git commit -m 'chore: #{self.options.description.downcase}'; git push")
-        # run_command("gh repo edit -d \"#{dom[:application_description]}\"")
+        run_command("git add .; git commit -m 'chore: #{self.options.description.downcase}'; git push")
+        run_command("gh repo edit -d \"#{dom[:application_description]}\"")
       end
       .package_json(
         active: false,
